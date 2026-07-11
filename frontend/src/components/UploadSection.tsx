@@ -13,26 +13,20 @@ function UploadSection({ onUpload }: UploadSectionProps) {
 
     setSelectedFiles(Array.from(event.target.files));
   };
-  const handleUploadClick = async () => {
+ const handleUploadClick = async () => {
   if (selectedFiles.length === 0) return;
 
   try {
     for (const file of selectedFiles) {
-      await uploadDocument(file);
+      const response = await uploadDocument(file);
+      console.log("Upload response:", response);
     }
 
     onUpload(selectedFiles);
-
     setSelectedFiles([]);
   } catch (error) {
     console.error("Upload failed:", error);
-
-    // Temporary until backend is running
-    onUpload(selectedFiles);
-
-    alert("Backend not available. Files added locally.");
-
-    setSelectedFiles([]);
+    alert("Check the browser console for the actual error.");
   }
 };
   return (
