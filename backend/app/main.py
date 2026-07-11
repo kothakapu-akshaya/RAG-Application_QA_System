@@ -23,8 +23,7 @@ app.include_router(health_router)
 app.include_router(upload_router)
 app.include_router(query_router)
 
+
 @app.get("/")
 def root():
-    return {
-        "message": "Structured QA Backend is running!"
-    }
+    return {"message": "Structured QA Backend is running!"}

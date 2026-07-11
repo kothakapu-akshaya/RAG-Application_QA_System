@@ -30,8 +30,8 @@ Answer:
             "options": {
                 "temperature": 0,
                 "num_predict": 30,
-                "num_ctx": 2048
-            }
+                "num_ctx": 2048,
+            },
         },
         timeout=60,
     )

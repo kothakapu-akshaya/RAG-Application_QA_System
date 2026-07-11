@@ -21,7 +21,7 @@ def query_document(request: QueryRequest):
     if not results:
         return {
             "question": request.question,
-            "answer": "No relevant information found."
+            "answer": "No relevant information found.",
         }
 
     # Combine all retrieved chunks
