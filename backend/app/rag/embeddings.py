@@ -6,7 +6,13 @@ model = SentenceTransformer("all-MiniLM-L6-v2")
 
 def generate_embeddings(chunks: list[str]):
     """
-    Generate embeddings for a list of text chunks.
+    Generate normalized embeddings for semantic search.
     """
-    embeddings = model.encode(chunks)
+
+    embeddings = model.encode(
+        chunks,
+        normalize_embeddings=True,
+        convert_to_numpy=True
+    )
+
     return embeddings
