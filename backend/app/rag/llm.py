@@ -1,24 +1,14 @@
 import requests
-
-
 OLLAMA_URL = "http://localhost:11434/api/generate"
-MODEL_NAME = "phi3:mini"
+MODEL_NAME = "gemma3:1b"
 
 
 def generate_answer(question: str, context: str) -> str:
-    """
-    Generate an answer using Ollama based only on the retrieved context.
-    """
-
     prompt = f"""
-You are a helpful assistant for answering questions from uploaded documents.
+Answer the question using ONLY the context below.
 
-Rules:
-1. Answer ONLY using the provided context.
-2. Do not make up information.
-3. If the answer is not found in the context, reply:
-   "I couldn't find the answer in the uploaded document."
-4. Give concise answers.
+If the answer is not in the context, say:
+"I couldn't find the answer in the uploaded document."
 
 Context:
 {context}
@@ -29,7 +19,7 @@ Question:
 Answer:
 """
 
-    print("Sending prompt to Ollama...")
+    print(f"Prompt length: {len(prompt)}")
 
     response = requests.post(
         OLLAMA_URL,
@@ -39,13 +29,12 @@ Answer:
             "stream": False,
             "options": {
                 "temperature": 0,
-                "num_predict": 200
+                "num_predict": 30,
+                "num_ctx": 2048
             }
         },
-        timeout=300,
+        timeout=60,
     )
-
-    print("Response received from Ollama")
 
     response.raise_for_status()
 
