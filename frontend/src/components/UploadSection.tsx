@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { uploadDocument } from "../services/upload";
 
 type UploadSectionProps = {
   onUpload: (files: File[]) => void;
@@ -11,17 +12,29 @@ function UploadSection({ onUpload }: UploadSectionProps) {
     if (!event.target.files) return;
 
     setSelectedFiles(Array.from(event.target.files));
-    console.log(Array.from(event.target.files));
   };
+  const handleUploadClick = async () => {
+  if (selectedFiles.length === 0) return;
 
-  const handleUploadClick = () => {
-    if (selectedFiles.length === 0) return;
+  try {
+    for (const file of selectedFiles) {
+      await uploadDocument(file);
+    }
 
     onUpload(selectedFiles);
 
     setSelectedFiles([]);
-  };
+  } catch (error) {
+    console.error("Upload failed:", error);
 
+    // Temporary until backend is running
+    onUpload(selectedFiles);
+
+    alert("Backend not available. Files added locally.");
+
+    setSelectedFiles([]);
+  }
+};
   return (
     <section>
       <h2>Upload Documents</h2>

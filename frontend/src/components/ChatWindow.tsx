@@ -1,15 +1,15 @@
 import { useState } from "react";
 
 type Message = {
-  sender: "user" | "bot";
+  sender: "user" | "Raccon";
   text: string;
 };
 
 function ChatWindow() {
   const [messages, setMessages] = useState<Message[]>([
     {
-      sender: "bot",
-      text: "Hello! Upload a document and ask me a question.",
+      sender: "Raccon",
+      text: "Hey 👋! Upload a PDF document and ask me a question to get clarity.",
     },
   ]);
 
@@ -31,28 +31,29 @@ function ChatWindow() {
 
   return (
     <section>
-      <h2>Chat</h2>
+  <h2>Chat</h2>
 
-      <div className="chat-box">
-        {messages.map((message, index) => (
-          <div key={index} className={`message ${message.sender}`}>
-            <strong>{message.sender === "user" ? "You" : "Bot"}:</strong>{" "}
-            {message.text}
-          </div>
-        ))}
+  <div className="chat-input">
+    <input
+      type="text"
+      placeholder="Ask a question..."
+      value={question}
+      onChange={(e) => setQuestion(e.target.value)}
+    />
+
+    <button onClick={handleSend}>Send</button>
+  </div>
+
+  <div className="chat-box">
+    {messages.map((message, index) => (
+      <div key={index} className={`message ${message.sender}`}>
+        <strong>{message.sender === "user" ? "You" : "Racoon"}:</strong>
+        <br />
+        {message.text}
       </div>
-
-      <div className="chat-input">
-        <input
-          type="text"
-          placeholder="Ask a question..."
-          value={question}
-          onChange={(e) => setQuestion(e.target.value)}
-        />
-
-        <button onClick={handleSend}>Send</button>
-      </div>
-    </section>
+    ))}
+  </div>
+</section>
   );
 }
 

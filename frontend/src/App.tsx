@@ -2,37 +2,27 @@ import { useState } from "react";
 import "./index.css";
 
 import UploadSection from "./components/UploadSection";
-import DocumentList from "./components/DocumentList";
 import ChatWindow from "./components/ChatWindow";
 
-type Document = {
-  id: string;
-  name: string;
+function App() {
+  const [uploadMessage, setUploadMessage] = useState("");
+  const handleUpload = (files: File[]) => {
+  if (files.length === 1) {
+    setUploadMessage(`${files[0].name} uploaded successfully!`);
+  } else {
+    setUploadMessage(`${files.length} files uploaded successfully!`);
+  }
 };
 
-function App() {
-  const [documents, setDocuments] = useState<Document[]>([]);
-
-  const handleUpload = (files: File[]) => {
-    const uploadedDocuments = files.map((file) => ({
-      id: crypto.randomUUID(),
-      name: file.name,
-    }));
-
-    setDocuments((prev) => [...prev, ...uploadedDocuments]);
-  };
-  const handleDelete = (id: string) => {
-    setDocuments((prev) => prev.filter((doc) => doc.id !== id));
-  };
 
   return (
     <div className="app">
       <h1>Document Q&A</h1>
 
       <UploadSection onUpload={handleUpload} />
-
-      <DocumentList documents={documents} onDelete={handleDelete} />
-
+      {uploadMessage && (
+  <p className="upload-message">✅ {uploadMessage}</p>
+)}
       <ChatWindow />
     </div>
   );
