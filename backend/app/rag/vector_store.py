@@ -1,12 +1,13 @@
 import faiss
 import numpy as np
+from typing import List
 
 
 class VectorStore:
     def __init__(self, dimension: int):
         # Use cosine similarity (via inner product on normalized vectors)
         self.index = faiss.IndexFlatIP(dimension)
-        self.chunks = []
+        self.chunks: List[str] = []
 
     def add(self, embeddings, chunks):
         embeddings = np.array(embeddings).astype("float32")
