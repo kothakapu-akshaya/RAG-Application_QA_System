@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # 📄 RAG Document Question Answering System
 
 ## Overview
