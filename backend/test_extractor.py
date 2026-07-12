@@ -1,4 +1,3 @@
-
 from app.rag.extractor import extract_text
 from app.rag.chunker import chunk_text
 from app.rag.embeddings import generate_embeddings

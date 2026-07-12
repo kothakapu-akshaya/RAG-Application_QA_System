@@ -9,10 +9,6 @@ def generate_embeddings(chunks: list[str]):
     Generate normalized embeddings for semantic search.
     """
 
-    embeddings = model.encode(
-        chunks,
-        normalize_embeddings=True,
-        convert_to_numpy=True
-    )
+    embeddings = model.encode(chunks, normalize_embeddings=True, convert_to_numpy=True)
 
     return embeddings

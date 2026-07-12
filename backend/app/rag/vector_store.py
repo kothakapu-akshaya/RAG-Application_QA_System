@@ -3,7 +3,6 @@ import numpy as np
 
 
 class VectorStore:
-
     def __init__(self, dimension: int):
         # Use cosine similarity (via inner product on normalized vectors)
         self.index = faiss.IndexFlatIP(dimension)

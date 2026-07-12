@@ -13,22 +13,22 @@ function UploadSection({ onUpload }: UploadSectionProps) {
 
     setSelectedFiles(Array.from(event.target.files));
   };
- const handleUploadClick = async () => {
-  if (selectedFiles.length === 0) return;
+  const handleUploadClick = async () => {
+    if (selectedFiles.length === 0) return;
 
-  try {
-    for (const file of selectedFiles) {
-      const response = await uploadDocument(file);
-      console.log("Upload response:", response);
+    try {
+      for (const file of selectedFiles) {
+        const response = await uploadDocument(file);
+        console.log("Upload response:", response);
+      }
+
+      onUpload(selectedFiles);
+      setSelectedFiles([]);
+    } catch (error) {
+      console.error("Upload failed:", error);
+      alert("Check the browser console for the actual error.");
     }
-
-    onUpload(selectedFiles);
-    setSelectedFiles([]);
-  } catch (error) {
-    console.error("Upload failed:", error);
-    alert("Check the browser console for the actual error.");
-  }
-};
+  };
   return (
     <section>
       <h2>Upload Documents</h2>

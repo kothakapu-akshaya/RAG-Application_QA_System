@@ -43,7 +43,7 @@ function ChatWindow() {
           text: response.answer,
         },
       ]);
-    } catch (error) {
+    } catch {
       setMessages((prev) => [
         ...prev,
         {
