@@ -24,7 +24,7 @@ def query_document(request: QueryRequest):
             "answer": "No relevant information found.",
         }
 
-    # Combine all retrieved chunks
+    # Use only the best retrieved chunk
     context = results[0]
 
     # Measure LLM generation time
@@ -34,6 +34,11 @@ def query_document(request: QueryRequest):
         question=request.question,
         context=context,
     )
+
+    print("=" * 80)
+    print("QUESTION:", request.question)
+    print("ANSWER:", answer)
+    print("=" * 80)
 
     llm_time = time.time() - llm_start
     print(f"LLM Response Time: {llm_time:.2f} seconds")
