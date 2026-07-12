@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 📄 RAG Document Question Answering System
 
 ## Overview
@@ -92,3 +93,6 @@ npm run dev
 
 - Vanamoju Lakshmi Meghana
 - Kothakapu Akshaya
+=======
+# RAG-Application_Viswam-AI
+>>>>>>> c80479c6cadd334807fc4fa4b4993c6ebc9a5b6b
