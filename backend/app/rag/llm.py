@@ -33,11 +33,11 @@ Answer:
                 "stream": False,
                 "options": {
                     "temperature": 0,
-                    "num_predict": 50,
+                    "num_predict": 120,
                     "num_ctx": 1024,
                 },
             },
-            timeout=120,
+            timeout=180,
         )
 
         print(f"Ollama responded in {time.time() - start:.2f} seconds")
