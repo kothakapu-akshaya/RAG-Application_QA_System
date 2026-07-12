@@ -1,5 +1,25 @@
 # Python
 backend/.venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Uploaded documents
+backend/data/uploads/
+
+# Node
+frontend/node_modules/
+
+# Build folders
+dist/
+
+# Environment files
+.env
+
+# VS Code
+.vscode/# Python
+backend/.venv/
 __pycache__/
 *.pyc
 
