@@ -2,14 +2,14 @@ import { useState } from "react";
 import { queryDocument } from "../services/query";
 
 type Message = {
-  sender: "user" | "bot";
+  sender: "user" | "Racoon";
   text: string;
 };
 
 function ChatWindow() {
   const [messages, setMessages] = useState<Message[]>([
     {
-      sender: "bot",
+      sender: "Racoon",
       text: "Hello! Upload a document and ask me a question.",
     },
   ]);
@@ -39,7 +39,7 @@ function ChatWindow() {
       setMessages((prev) => [
         ...prev,
         {
-          sender: "bot",
+          sender: "Racoon",
           text: response.answer,
         },
       ]);
@@ -47,7 +47,7 @@ function ChatWindow() {
       setMessages((prev) => [
         ...prev,
         {
-          sender: "bot",
+          sender: "Racoon",
           text: "Something went wrong while getting the answer.",
         },
       ]);
@@ -72,9 +72,7 @@ function ChatWindow() {
       <div className="chat-box">
         {messages.map((message, index) => (
           <div key={index} className={`message ${message.sender}`}>
-            <strong>
-              {message.sender === "user" ? "You" : "Document Assistant"}:
-            </strong>
+            <strong>{message.sender === "user" ? "You" : "Racoon"}:</strong>
             <br />
             {message.text}
           </div>
